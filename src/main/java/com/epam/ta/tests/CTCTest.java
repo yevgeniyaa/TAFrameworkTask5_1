@@ -23,10 +23,10 @@ public class CTCTest {
 
 
     @Test(description = "Log in")
-    @Parameters({"baseUrl", "userName", "pwdName", "firstName"})
-    public void loginTest(String baseUrl, String userName, String pwdName, String firstName){
+    @Parameters({"baseUrl", "userName", "pwdName", "Name"})
+    public void loginTest(String baseUrl, String userName, String pwdName, String Name){
         DashBoardPage loginPage = new LoginPage().open(baseUrl).login(userName, pwdName);
-        Assert.assertTrue(loginPage.readLoggedinText().contains(textAfterSuccessfulLogin + firstName), "Impossible to login to CTC");
+        Assert.assertTrue(loginPage.readLoggedinText().contains(textAfterSuccessfulLogin + Name), "Impossible to login to CTC");
     }
 
     @Test(dependsOnMethods = "loginTest", description = "check opening the list of Bussiness Trips")
