@@ -9,12 +9,8 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class CTCTest {
-    protected BusinessTripStep businessTripStep = new BusinessTripStep();
-    protected BaseStep baseStep = new BaseStep();
-    private final String projectName = "ENRC-TRD";
-    private final String country = "Belarus";
-    private final String destinationCity = "Minsk";
-    private final String destinationAddress = "Minsk";
+    private BusinessTripStep businessTripStep = new BusinessTripStep();
+    private BaseStep baseStep = new BaseStep();
     private final String sectionName = "Business Trips";
 
 
@@ -32,7 +28,8 @@ public class CTCTest {
 
     @Test(dependsOnMethods = "openListOfBT", description = "create new BT")
     public void createNewBt(){
-        businessTripStep.createBT(projectName,country, destinationCity, destinationAddress);
+//        businessTripStep.createBT(projectName,country, destinationCity, destinationAddress);
+        businessTripStep.createBT();
         Assert.assertTrue(businessTripStep.checkBTid(), "Business Trip is not created");
     }
 

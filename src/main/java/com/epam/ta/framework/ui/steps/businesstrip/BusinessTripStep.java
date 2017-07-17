@@ -23,7 +23,7 @@ public class BusinessTripStep extends BaseStep {
     public BusinessTripStep() {
     }
 
-    public void createBT(String projectName, String country, String destinationCity, String destinationAddress){
+    public void createBT(){
         btListPage.newBtClick();
         createBTPage.chooseProject(projectName);
         createBTPage.inputEstimatedBudget(estimatedBudget);

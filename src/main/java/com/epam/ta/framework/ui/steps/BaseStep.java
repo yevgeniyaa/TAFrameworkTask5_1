@@ -5,6 +5,12 @@ import com.epam.ta.framework.ui.pages.login.LogOutBlock;
 import com.epam.ta.framework.ui.pages.login.LoginPage;
 
 public class BaseStep {
+    protected final String projectName = "ENRC-TRD";
+    protected final String country = "Belarus";
+    protected final String destinationCity = "Minsk";
+    protected final String destinationAddress = "Minsk";
+    public final String sectionName = "Business Trips";
+
     private final String textWelcome = "Welcome to EPAM Cost Tracking Center";
     private final String textAfterSuccessfulLogin = "Logged in as ";
     private LoginPage loginPage = new LoginPage();
