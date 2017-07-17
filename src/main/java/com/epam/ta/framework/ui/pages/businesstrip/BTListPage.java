@@ -21,6 +21,7 @@ public class BTListPage extends AbstractPage {
     }
 
     public String readListName(){
+        waitForElementPresent(BT_LIST_NAME_LOCATOR);
         return Driver.getDriverInstance().findElement(BT_LIST_NAME_LOCATOR).getText();
     }
 }

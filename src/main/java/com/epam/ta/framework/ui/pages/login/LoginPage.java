@@ -25,6 +25,7 @@ public class LoginPage extends AbstractPage {
     }
 
     public String readIntroductionText(){
+        waitForElementVisible(LOGIN_PAGE_TEXT_LOCATOR);
         return Driver.getDriverInstance().findElement(LOGIN_PAGE_TEXT_LOCATOR).getText();
     }
 }

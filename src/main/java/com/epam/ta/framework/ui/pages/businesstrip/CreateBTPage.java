@@ -2,73 +2,80 @@ package com.epam.ta.framework.ui.pages.businesstrip;
 
 import com.epam.ta.framework.ui.driver.Driver;
 import com.epam.ta.framework.ui.pages.AbstractPage;
-import com.epam.ta.framework.ui.pages.general.ChooseProjectBlock;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.ui.Select;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class CreateBTPage extends AbstractPage {
-    private Date currentDate = new Date();
-    private DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    private DateFormat inputFormat = new SimpleDateFormat("MM/dd/yy");
-    private long msDay = 7 * 24 * 60 * 60 * 1000;  //миллисекунд в 7 сутках
-//    private Integer estimatedBudget = 200000;
-    private String plannedStartDate = inputFormat.format(currentDate); //
-    private String plannedEndDate = inputFormat.format(currentDate.getTime() + msDay);
+    public BTDetailsBlock btDetailsBlock = new BTDetailsBlock();
+    public BTGeneralInfoBlock btGeneralInfoBlock = new BTGeneralInfoBlock();
 
     private final By SAVE_BUTTON_LOCATOR = By.xpath("//button[text()[contains(.,'Save Changes')]]");
-//    private final By PLANNED_DURATION_LOCATOR = By.xpath("//span[@id='plannedDuration']");
-//    private final By PLANNED_START_DATE_LOCATOR = By.xpath("//input[@id='plannedStartDate_ui']");
-//    private final By PLANNED_END_DATE_LOCATOR = By.xpath("//input[@id='plannedEndDate_ui']");
-//    private final By DESTINATION_COUNTRY_LOCATOR = By.xpath(".//select[@name='destinationCountryId']");
-//    private final By DESTINATION_CITY_LOCATOR = By.xpath("//input[@name='destinationCity']");
-//    private final By DESTINATION_ADDRESS_LOCATOR = By.xpath("//textarea[@name='destinationAddress']");
-//    private final By DESCRIPTION_LOCATOR = By.xpath("//textarea[@id='description']");
-//    private final By TICKET_LOCATOR = By.xpath("//input[@id='ticketsRequired']");
-//    private final By CAR_LOCATOR = By.xpath("//input[@id='carRequired']");
-//    private final By ESTIMATE_BUDGET_LOCATOR = By.xpath("//input[@class='textfield textfieldDigit textfieldAmount' and @name='estimatedBudget']");
-//    private final By SUMMARY_LOCATOR = By.xpath("//input[@name='itemName']");
-//    private final By BT_ID_LOCATOR = By.xpath("//span[@class='item' and contains(text(), 'Business Trip ID: #')]/a");
 
-    public CreateBTPage fillMandatoryFields(String projectName, String country, String destinationCity, String destinationAddress) {
-        String description = "Travel to " + destinationCity + " " + sdf.format(currentDate);
-        new ChooseProjectBlock().open().changeFilter().searchProjectOrCost(projectName).clickByOK();
-        waitForElementEnabled(PLANNED_END_DATE_LOCATOR);
-        Select countrySelect = new Select(Driver.getDriverInstance().findElement(DESTINATION_COUNTRY_LOCATOR));
-        countrySelect.selectByVisibleText(country);
-        Driver.getDriverInstance().findElement(DESTINATION_CITY_LOCATOR).sendKeys(destinationCity);
-        Driver.getDriverInstance().findElement(DESTINATION_ADDRESS_LOCATOR).sendKeys(destinationAddress);
-        Driver.getDriverInstance().findElement(DESCRIPTION_LOCATOR).sendKeys(description);
-        if (!Driver.getDriverInstance().findElement(TICKET_LOCATOR).isSelected()) {
-            Driver.getDriverInstance().findElement(TICKET_LOCATOR).click();
-        }
-        if (!Driver.getDriverInstance().findElement(CAR_LOCATOR).isSelected()) {
-            Driver.getDriverInstance().findElement(CAR_LOCATOR).click();
-        }
-        Driver.getDriverInstance().findElement(ESTIMATE_BUDGET_LOCATOR).sendKeys(estimatedBudget.toString());
-        Driver.getDriverInstance().findElement(PLANNED_START_DATE_LOCATOR).sendKeys(plannedStartDate);
-        Driver.getDriverInstance().findElement(PLANNED_END_DATE_LOCATOR).sendKeys(plannedEndDate);
-        Driver.getDriverInstance().findElement(SUMMARY_LOCATOR).sendKeys("BT created by Selenium " + sdf.format(currentDate));
-        return this;
+    public void inputSummary(String summary){
+//        btGeneralInfoBlock.clearSummary();
+        btGeneralInfoBlock.inputSummary(summary);
+    }
+
+    public void chooseProject(String projectName) {
+        btGeneralInfoBlock.clearProject();
+        btGeneralInfoBlock.chooseProject().changeFilter().searchProjectOrCost(projectName).clickByOK();
+    }
+
+    public void inputEstimatedBudget(Integer estimatedBudget){
+        btGeneralInfoBlock.inputEstimatedBudget(estimatedBudget);
+    }
+
+    public void inputDestinationCountry(String country){
+        btDetailsBlock.inputDestinationCountry(country);
+    }
+
+    public void inputDestinationCity(String destinationCity){
+        btDetailsBlock.inputDestinationCity(destinationCity);
+    }
+
+    public void inputDestinationAddress(String destinationAddress){
+        btDetailsBlock.inputDestinationAddress(destinationAddress);
+    }
+
+    public void inputStartDate(String plannedStartDate){
+        btDetailsBlock.inputStartDate(plannedStartDate);
+    }
+
+    public void inputEndDate(String plannedEndDate){
+        btDetailsBlock.inputEndDate(plannedEndDate);
+    }
+
+    public void saveItem(){
+        waitForElementVisibleEnabled(SAVE_BUTTON_LOCATOR);
+
+//        System.out.println(btDetailsBlock.getPlannedDuration());
+        String executeString = Driver.getDriverInstance().findElement(SAVE_BUTTON_LOCATOR).getAttribute("onclick");
+        ((JavascriptExecutor)Driver.getDriverInstance()).executeScript(executeString);
     }
 
     public CreateBTPage saveForm() {
-        waitForElementVisibleEnabled(PLANNED_START_DATE_LOCATOR);
+//        waitForElementVisibleEnabled(PLANNED_START_DATE_LOCATOR);
         waitForElementVisibleEnabled(SAVE_BUTTON_LOCATOR);
-        waitForFillingPlanningDuration(PLANNED_DURATION_LOCATOR, "0");
+//        waitForFillingPlanningDuration(PLANNED_DURATION_LOCATOR, "0");
 
         String executeString = Driver.getDriverInstance().findElement(SAVE_BUTTON_LOCATOR).getAttribute("onclick");
         ((JavascriptExecutor)Driver.getDriverInstance()).executeScript(executeString);
         return this;
     }
 
-//    public String getBTid(){
-//        return Driver.getDriverInstance().findElement(BT_ID_LOCATOR).getText();
+//    public boolean countBTid(){
+//        if (btGeneralInfoBlock.getBTid().length() == 19){
+//            return true;
+//        } else return false;
 //    }
 
+    public Integer countBTid(){
+        return btGeneralInfoBlock.getBTid().length();
+    }
 
+    public String getDuration() {
+        String startDate = btDetailsBlock.getPlannedStartDate();
+        String endDate = btDetailsBlock.getPlannedEndDate();
+        return startDate + " - " + endDate;
+    }
 }

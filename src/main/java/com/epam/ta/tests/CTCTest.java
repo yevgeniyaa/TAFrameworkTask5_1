@@ -1,50 +1,44 @@
 package com.epam.ta.tests;
 
 import com.epam.ta.framework.ui.driver.Driver;
-import com.epam.ta.framework.ui.pages.businesstrip.BTListPage;
-import com.epam.ta.framework.ui.pages.businesstrip.CreateBTPage;
-import com.epam.ta.framework.ui.pages.dashboard.DashBoardPage;
-import com.epam.ta.framework.ui.pages.login.LogOutBlock;
-import com.epam.ta.framework.ui.pages.login.LoginPage;
 import com.epam.ta.framework.ui.steps.BaseStep;
+import com.epam.ta.framework.ui.steps.businesstrip.BusinessTripStep;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class CTCTest {
-
+    protected BusinessTripStep businessTripStep = new BusinessTripStep();
+    protected BaseStep baseStep = new BaseStep();
     private final String projectName = "ENRC-TRD";
     private final String country = "Belarus";
     private final String destinationCity = "Minsk";
     private final String destinationAddress = "Minsk";
-    private final String textAfterSuccessfulLogin = "Logged in as ";
     private final String sectionName = "Business Trips";
 
 
     @Test(description = "Log in")
     @Parameters({"baseUrl", "userName", "pwdName", "Name"})
     public void loginTest(String baseUrl, String userName, String pwdName, String Name){
-        DashBoardPage loginPage = new LoginPage().open(baseUrl).login(userName, pwdName);
-        Assert.assertTrue(loginPage.readLoggedinText().contains(textAfterSuccessfulLogin + Name), "Impossible to login to CTC");
+        Assert.assertTrue(baseStep.login(baseUrl, userName, pwdName, Name), "Impossible to login to CTC");
     }
 
     @Test(dependsOnMethods = "loginTest", description = "check opening the list of Bussiness Trips")
     @Parameters({"baseUrl"})
     public void openListOfBT(String baseUrl) {
-        BTListPage btListPage = new BTListPage().open(baseUrl);
-        Assert.assertEquals(btListPage.readListName(), sectionName, "The section did not found");
+        Assert.assertEquals(businessTripStep.openList(baseUrl), sectionName, "The section did not found");
     }
 
     @Test(dependsOnMethods = "openListOfBT", description = "create new BT")
     public void createNewBt(){
-        CreateBTPage createBTPage = new BTListPage().newBtClick().fillMandatoryFields(projectName,country, destinationCity, destinationAddress).saveForm();
-        Assert.assertEquals(createBTPage.getBTid().length(), 19, "Business Trip is not created");
+        businessTripStep.createBT(projectName,country, destinationCity, destinationAddress);
+        Assert.assertTrue(businessTripStep.checkBTid(), "Business Trip is not created");
     }
 
     @Test(dependsOnMethods = "createNewBt", description = "Log out")
     public void logOut() {
-        Assert.assertTrue(new BaseStep().logout(),"Logout is not performed");
+        Assert.assertTrue(baseStep.logout(),"Logout is not performed");
     }
 
     @AfterClass(description = "Close browser")

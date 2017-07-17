@@ -45,6 +45,8 @@ public class BTGeneralInfoBlock extends AbstractPage{
     }
 
     public String getBTid(){
+        waitForElementVisibleEnabled(BT_ID_LOCATOR);
         return Driver.getDriverInstance().findElement(BT_ID_LOCATOR).getText();
     }
+
 }

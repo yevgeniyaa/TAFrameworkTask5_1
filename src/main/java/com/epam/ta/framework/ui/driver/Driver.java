@@ -2,7 +2,6 @@ package com.epam.ta.framework.ui.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -24,7 +23,7 @@ public class Driver {
     private static WebDriver initDriver(){
 //        System.setProperty("webdriver.gecko.driver", "src/main/resources/driverbinaries/geckodriver.exe");
 //        WebDriver driver = new FirefoxDriver();
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/driverbinaries/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "driverbinaries/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(COMMAND_DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);

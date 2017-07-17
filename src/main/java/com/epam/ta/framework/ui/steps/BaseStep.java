@@ -1,12 +1,21 @@
 package com.epam.ta.framework.ui.steps;
 
+import com.epam.ta.framework.ui.pages.dashboard.DashBoardPage;
 import com.epam.ta.framework.ui.pages.login.LogOutBlock;
 import com.epam.ta.framework.ui.pages.login.LoginPage;
 
 public class BaseStep {
     private final String textWelcome = "Welcome to EPAM Cost Tracking Center";
+    private final String textAfterSuccessfulLogin = "Logged in as ";
+    private LoginPage loginPage = new LoginPage();
+    private DashBoardPage dashBoardPage = new DashBoardPage();
 
     public BaseStep() {
+    }
+
+    public boolean login(String baseUrl, String userName, String pwdName, String Name){
+        loginPage.open(baseUrl).login(userName, pwdName);
+        return dashBoardPage.readLoggedinText().contains(textAfterSuccessfulLogin + Name);
     }
 
     public boolean logout(){
