@@ -1,6 +1,7 @@
 package com.epam.ta.framework.ui.steps;
 
 import com.epam.ta.framework.ui.pages.dashboard.DashBoardPage;
+import com.epam.ta.framework.ui.pages.general.ActionsBlock;
 import com.epam.ta.framework.ui.pages.login.LogOutBlock;
 import com.epam.ta.framework.ui.pages.login.LoginPage;
 
@@ -13,8 +14,10 @@ public class BaseStep {
 
     private final String textWelcome = "Welcome to EPAM Cost Tracking Center";
     private final String textAfterSuccessfulLogin = "Logged in as ";
+
     private LoginPage loginPage = new LoginPage();
     private DashBoardPage dashBoardPage = new DashBoardPage();
+    private ActionsBlock actionsBlock = new ActionsBlock();
 
     public BaseStep() {
     }
@@ -27,5 +30,17 @@ public class BaseStep {
     public boolean logout(){
         new LogOutBlock().logout().confirmation();
         return new LoginPage().readIntroductionText().contains(textWelcome);
+    }
+
+    public void submitWithActionNote(){
+        actionsBlock.clickSubmit();
+        actionsBlock.fillActionNote();
+        actionsBlock.submitConfirmation();
+    }
+
+    public void submitWithoutActionNote(){
+        actionsBlock.clickSubmit();
+        actionsBlock.submitConfirmation();
+
     }
 }

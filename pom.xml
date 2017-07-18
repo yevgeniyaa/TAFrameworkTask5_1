@@ -34,11 +34,6 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.13</version>
         </dependency>
-        <dependency>
-            <groupId>ru.yandex.qatools.htmlelements</groupId>
-            <artifactId>htmlelements-java</artifactId>
-            <version>1.17</version>
-        </dependency>
     </dependencies>
 
 </project>

@@ -7,12 +7,13 @@ import org.openqa.selenium.JavascriptExecutor;
 
 public class CreateBTPage extends AbstractPage {
     public BTDetailsBlock btDetailsBlock = new BTDetailsBlock();
-    public BTGeneralInfoBlock btGeneralInfoBlock = new BTGeneralInfoBlock();
+    private BTGeneralInfoBlock btGeneralInfoBlock = new BTGeneralInfoBlock();
 
     private final By SAVE_BUTTON_LOCATOR = By.xpath("//button[text()[contains(.,'Save Changes')]]");
+    private final By STATUS_LOCATOR = By.xpath("//span[@class='wdStatus']");
 
     public void inputSummary(String summary){
-//        btGeneralInfoBlock.clearSummary();
+        btGeneralInfoBlock.clearSummary();
         btGeneralInfoBlock.inputSummary(summary);
     }
 
@@ -47,27 +48,9 @@ public class CreateBTPage extends AbstractPage {
 
     public void saveItem(){
         waitForElementVisibleEnabled(SAVE_BUTTON_LOCATOR);
-
-//        System.out.println(btDetailsBlock.getPlannedDuration());
         String executeString = Driver.getDriverInstance().findElement(SAVE_BUTTON_LOCATOR).getAttribute("onclick");
         ((JavascriptExecutor)Driver.getDriverInstance()).executeScript(executeString);
     }
-
-    public CreateBTPage saveForm() {
-//        waitForElementVisibleEnabled(PLANNED_START_DATE_LOCATOR);
-        waitForElementVisibleEnabled(SAVE_BUTTON_LOCATOR);
-//        waitForFillingPlanningDuration(PLANNED_DURATION_LOCATOR, "0");
-
-        String executeString = Driver.getDriverInstance().findElement(SAVE_BUTTON_LOCATOR).getAttribute("onclick");
-        ((JavascriptExecutor)Driver.getDriverInstance()).executeScript(executeString);
-        return this;
-    }
-
-//    public boolean countBTid(){
-//        if (btGeneralInfoBlock.getBTid().length() == 19){
-//            return true;
-//        } else return false;
-//    }
 
     public Integer countBTid(){
         return btGeneralInfoBlock.getBTid().length();
@@ -77,5 +60,9 @@ public class CreateBTPage extends AbstractPage {
         String startDate = btDetailsBlock.getPlannedStartDate();
         String endDate = btDetailsBlock.getPlannedEndDate();
         return startDate + " - " + endDate;
+    }
+
+    public String getStatus(){
+        return Driver.getDriverInstance().findElement(STATUS_LOCATOR).getText();
     }
 }

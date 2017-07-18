@@ -33,7 +33,6 @@ public class BusinessTripStep extends BaseStep {
         createBTPage.btDetailsBlock.inputTripDescription("Travel to " + destinationCity + " " + sdf.format(currentDate));
         createBTPage.inputStartDate(plannedStartDate);
         createBTPage.inputEndDate(plannedEndDate);
-        System.out.println(createBTPage.getDuration());
         createBTPage.inputSummary(summaryBT);
         createBTPage.saveItem();
     }
@@ -47,10 +46,6 @@ public class BusinessTripStep extends BaseStep {
 
     }
 
-    public void submitBT(){
-
-    }
-
     public void cancelBT(){
 
     }
@@ -61,6 +56,12 @@ public class BusinessTripStep extends BaseStep {
 
     public boolean checkBTid(){
         if (createBTPage.countBTid() == 19){
+            return true;
+        } else return false;
+    }
+
+    public boolean isSubmitted(){
+        if ((createBTPage.getStatus().toLowerCase().contains("submitted")) || (createBTPage.getStatus().toLowerCase().contains("submited"))){
             return true;
         } else return false;
     }

@@ -1,5 +1,6 @@
 package com.epam.ta.framework.ui.driver;
 
+import com.epam.ta.framework.results.logger.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -21,7 +22,7 @@ public class Driver {
     }
 
     private static WebDriver initDriver(){
-//        System.setProperty("webdriver.gecko.driver", "src/main/resources/driverbinaries/geckodriver.exe");
+//        System.setProperty("webdriver.gecko.driver", "driverbinaries/geckodriver.exe");
 //        WebDriver driver = new FirefoxDriver();
         System.setProperty("webdriver.chrome.driver", "driverbinaries/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
@@ -36,7 +37,7 @@ public class Driver {
             try {
                 instance.quit();
             } catch (Exception e) {
-                System.out.println("Cannot kill browser");
+                Logger.error("Cannot kill browser");
             } finally {
                 instance = null;
             }
