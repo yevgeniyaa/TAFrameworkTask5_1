@@ -22,8 +22,6 @@ public class Driver {
     }
 
     private static WebDriver initDriver(){
-//        System.setProperty("webdriver.gecko.driver", "driverbinaries/geckodriver.exe");
-//        WebDriver driver = new FirefoxDriver();
         System.setProperty("webdriver.chrome.driver", "driverbinaries/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
