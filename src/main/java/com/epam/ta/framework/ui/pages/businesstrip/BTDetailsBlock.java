@@ -10,6 +10,7 @@ public class BTDetailsBlock extends AbstractPage {
     private final By PLANNED_START_DATE_LOCATOR = By.xpath("//input[@id='plannedStartDate_ui']");
     private final By PLANNED_END_DATE_LOCATOR = By.xpath("//input[@id='plannedEndDate_ui']");
     private final By DESTINATION_COUNTRY_LOCATOR = By.xpath(".//select[@name='destinationCountryId']");
+    private final By TRIP_FROM_LOCATION_LOCATOR = By.xpath(".//select[@name='fromLocationId']");
     private final By DESTINATION_CITY_LOCATOR = By.xpath("//input[@name='destinationCity']");
     private final By DESTINATION_ADDRESS_LOCATOR = By.xpath("//textarea[@name='destinationAddress']");
     private final By DESCRIPTION_LOCATOR = By.xpath("//textarea[@id='description']");
@@ -32,7 +33,10 @@ public class BTDetailsBlock extends AbstractPage {
         return this;
     }
 
-    public BTDetailsBlock inputTripFromLocation(){
+    public BTDetailsBlock inputTripFromLocation(String locationFrom){
+        waitForElementVisibleEnabled(TRIP_FROM_LOCATION_LOCATOR);
+        Select locationFromSelect = new Select(Driver.getDriverInstance().findElement(TRIP_FROM_LOCATION_LOCATOR));
+        locationFromSelect.selectByVisibleText(locationFrom);
         return this;
     }
 

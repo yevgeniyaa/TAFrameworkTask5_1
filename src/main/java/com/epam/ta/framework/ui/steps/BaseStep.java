@@ -8,6 +8,7 @@ import com.epam.ta.framework.ui.pages.login.LoginPage;
 public class BaseStep {
     protected final String projectName = "ENRC-TRD";
     protected final String country = "Belarus";
+    protected final String locationFrom = "Karaganda";
     protected final String destinationCity = "Minsk";
     protected final String destinationAddress = "Minsk";
     public final String sectionName = "Business Trips";
@@ -41,6 +42,5 @@ public class BaseStep {
     public void submitWithoutActionNote(){
         actionsBlock.clickSubmit();
         actionsBlock.submitConfirmation();
-
     }
 }

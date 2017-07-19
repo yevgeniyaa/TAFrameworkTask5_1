@@ -1,5 +1,6 @@
 package com.epam.ta.tests;
 
+import com.epam.ta.framework.ui.business_objects.User;
 import com.epam.ta.framework.ui.driver.Driver;
 import com.epam.ta.framework.ui.steps.BaseStep;
 import com.epam.ta.framework.ui.steps.businesstrip.BusinessTripStep;
@@ -12,14 +13,15 @@ import org.testng.annotations.Test;
 public class CTCTest {
     private BusinessTripStep businessTripStep = new BusinessTripStep();
     private BaseStep baseStep = new BaseStep();
+    private User user = new User();
 
     private final String sectionName = "Business Trips";
 
 
     @Test(description = "Log in")
-    @Parameters({"baseUrl", "userName", "pwdName", "Name"})
-    public void loginTest(String baseUrl, String userName, String pwdName, String Name){
-        Assert.assertTrue(baseStep.login(baseUrl, userName, pwdName, Name), "Impossible to login to CTC");
+    @Parameters({"baseUrl"})
+    public void loginTest(String baseUrl){
+        Assert.assertTrue(baseStep.login(baseUrl, user.getLogin(), user.getPassword(), user.getUserName()), "Impossible to login to CTC");
         Screenshoter.takeScreenshot();
     }
 
@@ -43,6 +45,7 @@ public class CTCTest {
         Assert.assertTrue(businessTripStep.isSubmitted(), "Business Trip is not submited");
         Screenshoter.takeScreenshot();
     }
+
     @Test(dependsOnMethods = "submitBT", description = "Log out")
     public void logOut() {
         Assert.assertTrue(baseStep.logout(),"Logout is not performed");

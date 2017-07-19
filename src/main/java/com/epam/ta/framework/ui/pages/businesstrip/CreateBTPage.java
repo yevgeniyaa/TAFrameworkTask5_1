@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 
 public class CreateBTPage extends AbstractPage {
-    public BTDetailsBlock btDetailsBlock = new BTDetailsBlock();
+    private BTDetailsBlock btDetailsBlock = new BTDetailsBlock();
     private BTGeneralInfoBlock btGeneralInfoBlock = new BTGeneralInfoBlock();
 
     private final By SAVE_BUTTON_LOCATOR = By.xpath("//button[text()[contains(.,'Save Changes')]]");
@@ -26,6 +26,10 @@ public class CreateBTPage extends AbstractPage {
         btGeneralInfoBlock.inputEstimatedBudget(estimatedBudget);
     }
 
+    public void inputTripFromLocation(String locationFrom){
+        btDetailsBlock.inputTripFromLocation(locationFrom);
+    }
+
     public void inputDestinationCountry(String country){
         btDetailsBlock.inputDestinationCountry(country);
     }
@@ -36,6 +40,10 @@ public class CreateBTPage extends AbstractPage {
 
     public void inputDestinationAddress(String destinationAddress){
         btDetailsBlock.inputDestinationAddress(destinationAddress);
+    }
+
+    public void inputTripDescription(String description){
+        btDetailsBlock.inputTripDescription(description);
     }
 
     public void inputStartDate(String plannedStartDate){

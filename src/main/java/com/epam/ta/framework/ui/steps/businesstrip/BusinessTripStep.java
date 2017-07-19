@@ -27,10 +27,11 @@ public class BusinessTripStep extends BaseStep {
         btListPage.newBtClick();
         createBTPage.chooseProject(projectName);
         createBTPage.inputEstimatedBudget(estimatedBudget);
+        createBTPage.inputTripFromLocation(locationFrom);
         createBTPage.inputDestinationCountry(country);
         createBTPage.inputDestinationCity(destinationCity);
         createBTPage.inputDestinationAddress(destinationAddress);
-        createBTPage.btDetailsBlock.inputTripDescription("Travel to " + destinationCity + " " + sdf.format(currentDate));
+        createBTPage.inputTripDescription("Travel to " + destinationCity + " " + sdf.format(currentDate));
         createBTPage.inputStartDate(plannedStartDate);
         createBTPage.inputEndDate(plannedEndDate);
         createBTPage.inputSummary(summaryBT);
