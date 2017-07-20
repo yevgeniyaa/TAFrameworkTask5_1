@@ -13,7 +13,6 @@ import org.testng.annotations.Test;
 public class CTCTest {
     private BusinessTripStep businessTripStep = new BusinessTripStep();
     private BaseStep baseStep = new BaseStep();
-    private User user = new User();
 
     private final String sectionName = "Business Trips";
 
@@ -21,7 +20,7 @@ public class CTCTest {
     @Test(description = "Log in")
     @Parameters({"baseUrl"})
     public void loginTest(String baseUrl){
-        Assert.assertTrue(baseStep.login(baseUrl, user.getLogin(), user.getPassword(), user.getUserName()), "Impossible to login to CTC");
+        Assert.assertTrue(baseStep.login(baseUrl), "Impossible to login to CTC");
         Screenshoter.takeScreenshot();
     }
 

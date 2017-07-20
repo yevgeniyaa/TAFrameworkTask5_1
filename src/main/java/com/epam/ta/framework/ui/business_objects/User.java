@@ -1,19 +1,25 @@
 package com.epam.ta.framework.ui.business_objects;
 
 public class User {
-    private static final String login = "dab";
-    private static final String Password = "1q2w3e4r5t";
-    private static final String userName = "Dina Abdykasheva";
+    private String login;
+    private String password ;
+    private String fullName;
+
+    public User() {
+        this.login = "dab";
+        this.password = "1q2w3e4r5t";
+        this.fullName = "Dina Abdykasheva";
+    }
 
     public String getLogin() {
         return login;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getFullName() {
+        return fullName;
     }
 }
