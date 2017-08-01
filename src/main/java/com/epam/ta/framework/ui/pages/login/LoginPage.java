@@ -19,7 +19,7 @@ public class LoginPage extends AbstractPage {
         return new DashBoardPage();
     }
 
-    public LoginPage open(String baseUrl){
+    public LoginPage open(String baseUrl){//todo Уже писала про этот метод. Вынести в общий
         Driver.getDriverInstance().get(baseUrl + ADDITIONAL_URL);
         return this;
     }

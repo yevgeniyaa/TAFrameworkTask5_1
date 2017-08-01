@@ -11,11 +11,14 @@ public class ItemBO {
     protected User actionPerfomer;
     protected String currency;
     protected String projectName;
-    private Date currentDate = new Date();
-    private DateFormat inputFormat = new SimpleDateFormat("MM/dd/yy");
+    //todo У тебя здесь начинается солянка. Классу должны принадлежать только к нему относящиеся поля и методы. Это ведь и есть принцип ООП абстракция
+    private Date currentDate = new Date();//todo Это поле - не лучшая идея. Понимаешь почему?
+    private DateFormat inputFormat = new SimpleDateFormat("MM/dd/yy");//todo Для хранения форматов даты нужно использовать отдельный утильный класс
     private DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    private long msDay = 7 * 24 * 60 * 60 * 1000;
+    private long msDay = 7 * 24 * 60 * 60 * 1000;//todo Аналогично. Используй отдельный класс
 
+    //todo Замечание аналогично BusinessTripBO - убирай хардкод из конструктора.
+    //todo Вот как раз отличный шанс использовать один из порождающих шаблонов проектирования (не скажу какой, подумай сам)
     public ItemBO() {
         this.summary = "Item is created by Selenium " + sdf.format(currentDate);
         this.actionPerfomer = new User();
@@ -67,6 +70,7 @@ public class ItemBO {
         this.projectName = projectName;
     }
 
+    //todo Все методы ниже - утильные и общие. Им не место здесь
     public Date getCurrentDate() {
         return currentDate;
     }

@@ -11,6 +11,7 @@ public class BaseStep {
     private final String textWelcome = "Welcome to EPAM Cost Tracking Center";
     private final String textAfterSuccessfulLogin = "Logged in as ";
 
+    //todo Чем обусловлено создание данных объектов именно здесь и именно так?
     private LoginPage loginPage = new LoginPage();
     private DashBoardPage dashBoardPage = new DashBoardPage();
     private ActionsBlock actionsBlock = new ActionsBlock();

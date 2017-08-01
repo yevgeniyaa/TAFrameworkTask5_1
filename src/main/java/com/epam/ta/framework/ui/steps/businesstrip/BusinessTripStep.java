@@ -15,6 +15,7 @@ public class BusinessTripStep extends BaseStep {
 
     public void createBT(){
         btListPage.newBtClick();
+        //todo Почему бы не создать в PageObject'е один метод, который будет принимать на вход объект BusinessTripBO и сетать там сразу все поля?
         createBTPage.chooseProject(businessTripBO.getProjectName());
         createBTPage.inputEstimatedBudget(businessTripBO.getEstimatedBudget());
         createBTPage.inputTripFromLocation(businessTripBO.getLocationFrom());
@@ -28,6 +29,7 @@ public class BusinessTripStep extends BaseStep {
         createBTPage.saveItem();
     }
 
+    //todo Либо нужно переименовать метод в соответствии с тем, что он выполняет, либо же разделить его на два разных метода
     public String openList(String baseUrl){
         btListPage.open(baseUrl);
         return btListPage.readListName();
@@ -46,12 +48,12 @@ public class BusinessTripStep extends BaseStep {
     }
 
     public boolean checkBTid(){
-        if (createBTPage.countBTid() == 19){
+        if (createBTPage.countBTid() == 19){//todo Сократи код
             return true;
         } else return false;
     }
 
-    public boolean isSubmitted(){
+    public boolean isSubmitted(){//todo Сократи код + можно создать общий утильный метод для подобного преобразования и сравнения строк
         if ((createBTPage.getStatus().toLowerCase().contains("submitted")) || (createBTPage.getStatus().toLowerCase().contains("submited"))){
             return true;
         } else return false;

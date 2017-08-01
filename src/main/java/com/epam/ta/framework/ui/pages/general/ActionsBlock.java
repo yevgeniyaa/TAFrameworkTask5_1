@@ -9,8 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ActionsBlock extends AbstractPage {
-    private Date currentDate = new Date();
-    private DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    private Date currentDate = new Date();//todo Здесь не место (уже объясняла). Убрать
+    private DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");//todo Здесь не место (уже объясняла). Убрать
 
     private final By SUBMIT_BUTTON_LOCATOR = By.xpath("//input[@value='Submit']");
     private final By CANCEL_BUTTON_LOCATOR = By.xpath("//input[@value='Cancel']");

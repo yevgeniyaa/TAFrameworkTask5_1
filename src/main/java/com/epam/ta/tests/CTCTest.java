@@ -1,5 +1,6 @@
 package com.epam.ta.tests;
 
+//todo Убрать ненужный импорт
 import com.epam.ta.framework.ui.business_objects.User;
 import com.epam.ta.framework.ui.driver.Driver;
 import com.epam.ta.framework.ui.steps.BaseStep;
@@ -12,16 +13,16 @@ import org.testng.annotations.Test;
 
 public class CTCTest {
     private BusinessTripStep businessTripStep = new BusinessTripStep();
-    private BaseStep baseStep = new BaseStep();
+    private BaseStep baseStep = new BaseStep();//todo Зачем? BusinessTripStep ведь наследуется от BaseStep
 
     private final String sectionName = "Business Trips";
 
 
-    @Test(description = "Log in")
+    @Test(description = "Log in")//todo Больше похоже на подготовительный шаг
     @Parameters({"baseUrl"})
     public void loginTest(String baseUrl){
         Assert.assertTrue(baseStep.login(baseUrl), "Impossible to login to CTC");
-        Screenshoter.takeScreenshot();
+        Screenshoter.takeScreenshot();//todo После ассерта кода в тесте быть не должно (относится ко всем тестам здесь)
     }
 
     @Test(dependsOnMethods = "loginTest", description = "check opening the list of Bussiness Trips")
@@ -45,7 +46,7 @@ public class CTCTest {
         Screenshoter.takeScreenshot();
     }
 
-    @Test(dependsOnMethods = "submitBT", description = "Log out")
+    @Test(dependsOnMethods = "submitBT", description = "Log out")//todo больше похоже на cleanUp шаг
     public void logOut() {
         Assert.assertTrue(baseStep.logout(),"Logout is not performed");
         Screenshoter.takeScreenshot();

@@ -1,7 +1,11 @@
 package com.epam.ta.framework.ui.business_objects;
 
+//todo Чем обусловлено данное наследование? Есть еще какие-то классы, которые могли бы унаследоваться от ItemBO?
+//todo Лучше наименования давать без лишнего, типа BO. А просто - Item, BusinessTrip.
 public class BusinessTripBO extends ItemBO{
     private Integer estimatedBudget;
+    //todo Почему формат даты выбран как стринг? Практичнее было бы хранить дату в формате даты -->
+    //todo и уже по потребности переводить ее в строку. Так ей легче можно будет оперировать в случае чего
     private String plannedStartDate;
     private String plannedEndDate;
     private String locationFrom;
@@ -10,6 +14,7 @@ public class BusinessTripBO extends ItemBO{
     private String destinationAddress;
     private String description;
 
+    //todo Убирай весь хардкод из конструктора. Если нужно установить какие-то значения, то передавай из снаружи как параметры
     public BusinessTripBO() {
         super();
         this.estimatedBudget = 200000;

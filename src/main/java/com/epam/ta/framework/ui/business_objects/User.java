@@ -5,6 +5,7 @@ public class User {
     private String password ;
     private String fullName;
 
+    //todo Аналогично BusinessTripBO
     public User() {
         this.login = "dab";
         this.password = "1q2w3e4r5t";

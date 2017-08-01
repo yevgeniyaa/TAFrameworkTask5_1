@@ -56,6 +56,7 @@ public class CreateBTPage extends AbstractPage {
 
     public void saveItem(){
         waitForElementVisibleEnabled(SAVE_BUTTON_LOCATOR);
+        //todo код ниже нужно оформить в общий метод и вынести в утильный класс
         String executeString = Driver.getDriverInstance().findElement(SAVE_BUTTON_LOCATOR).getAttribute("onclick");
         ((JavascriptExecutor)Driver.getDriverInstance()).executeScript(executeString);
     }

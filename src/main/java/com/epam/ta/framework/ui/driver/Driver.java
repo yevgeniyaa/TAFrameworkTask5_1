@@ -22,6 +22,10 @@ public class Driver {
     }
 
     private static WebDriver initDriver(){
+        //todo Если у тебя использование хрома захардкожено, то зачем ты добавил драйвера в driverbinaries и других браузеров?
+        //todo Они только загружают репозиторий.
+        //todo Также давай создадим отдельный файл с настройками или, по крайней мере, класс с константами, куда можно будет вынести -->
+        //todo подобные значения "driverbinaries/chromedriver.exe". Если они все будут в однои месте, будет удобнее, чем если придется их искать по всему проекту
         System.setProperty("webdriver.chrome.driver", "driverbinaries/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);

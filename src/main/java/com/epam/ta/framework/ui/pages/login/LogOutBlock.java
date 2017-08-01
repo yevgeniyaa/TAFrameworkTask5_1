@@ -14,7 +14,7 @@ public class LogOutBlock extends AbstractPage {
         return this;
     }
 
-    public LogOutBlock confirmation(){
+    public LogOutBlock confirmation(){//todo Общий метод. Вынеси в общий класс
         Driver.getDriverInstance().switchTo().alert().accept();
         return this;
     }

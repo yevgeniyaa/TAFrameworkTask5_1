@@ -17,7 +17,7 @@ public class BTGeneralInfoBlock extends AbstractPage{
     public ChooseProjectBlock chooseProject(){
         waitForElementEnabled(CHOOSE_PROJECT_LOCATOR);
         Driver.getDriverInstance().findElement(CHOOSE_PROJECT_LOCATOR).click();
-        return new ChooseProjectBlock();
+        return new ChooseProjectBlock();//todo Чем обусловлен возврат именно этого объекта?
     }
 
     public BTGeneralInfoBlock clearProject(){
